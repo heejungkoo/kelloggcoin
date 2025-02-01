@@ -27,3 +27,31 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+
+names = ["ben", "brian", "evan", "anthony"]
+
+balance = [
+  { "username" => "ben", "balance" => 0 },
+  { "username" => "brian", "balance" => 0 },
+  { "username" => "evan", "balance" => 0 },
+  { "username" => "anthony", "balance" => 0 }
+]
+
+#for i in blockchain
+
+for i in 0...blockchain.size
+  for j in 0...names.size
+    if blockchain[i]["from_user"] == names[j]
+    balance[j]["balance"] = balance[j]["balance"] - blockchain[i]["amount"]
+    elsif blockchain[i]["to_user"] == names[j]
+    balance[j]["balance"] = balance[j]["balance"] + blockchain[i]["amount"]
+    end
+  end
+end
+
+puts balance
+
+for name in names
+  
+end
