@@ -31,27 +31,31 @@ blockchain = [
 
 names = ["ben", "brian", "evan", "anthony"]
 
-balance = [
-  { "username" => "ben", "balance" => 0 },
-  { "username" => "brian", "balance" => 0 },
-  { "username" => "evan", "balance" => 0 },
-  { "username" => "anthony", "balance" => 0 }
-]
+# initialise wallet
+wallet = []
+for i in 0...names.size
+  wallet[i] = {"username" => names[i], "balance" => 0}
+end
 
-#for i in blockchain
+#wallet = [
+#  { "username" => "ben", "balance" => 0 },
+#  { "username" => "brian", "balance" => 0 },
+#  { "username" => "evan", "balance" => 0 },
+#  { "username" => "anthony", "balance" => 0 }
+#]
 
+# calculate the transaction results
 for i in 0...blockchain.size
   for j in 0...names.size
     if blockchain[i]["from_user"] == names[j]
-    balance[j]["balance"] = balance[j]["balance"] - blockchain[i]["amount"]
+      wallet[j]["balance"] = wallet[j]["balance"] - blockchain[i]["amount"]
     elsif blockchain[i]["to_user"] == names[j]
-    balance[j]["balance"] = balance[j]["balance"] + blockchain[i]["amount"]
+      wallet[j]["balance"] = wallet[j]["balance"] + blockchain[i]["amount"]
     end
   end
 end
 
-puts balance
-
-for name in names
-  
+# print the results out
+for i in 0...names.size
+  puts names[i].capitalize + "'s KelloggCoin balance is " + wallet[i]["balance"].to_s
 end
